@@ -302,7 +302,7 @@ class UserView(QDialog):
         self.resize(700, 300)
 
     def setup_header(self, layout):
-        header_label = QLabel("\nUSB Logger - 101 Cyber Dive\n")
+        header_label = QLabel("\nUSB Logger View\n")
         header_label.setObjectName("header")
         header_label.setAlignment(Qt.AlignCenter)
         header_label.setFont(QFont("Arial", 30, QFont.Bold))
