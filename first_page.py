@@ -201,3 +201,53 @@ class UserView(QDialog):
 
         self.setLayout(layout)
         self.resize(700, 300)
+
+    def showMoreInfo(self):
+        # serial_number = "001CC0EC348DF031069F06C5"
+        dialog = TableView(self)
+        # print(serial_number)
+        dialog.exec_()
+
+    def login(self):
+        username = self.username_input.text()
+        password = self.password_input.text()
+        logging.debug(f"Attempting to login with Username: {username}, Password: {password}")
+
+        if username == "admin" and password == "admin":
+            logging.info("Login successful")
+            self.show_table_view()
+        else:
+            logging.warning("Invalid username or password")
+            QMessageBox.warning(self, "Login", "Invalid username or password")
+
+    def register(self):
+        username = self.username_input.text()
+        password = self.password_input.text()
+        logging.debug(f"Opening Register dialog with Username: {username}")
+
+        dialog = RegisterDialog(username, password, self)
+        if dialog.exec_() == QDialog.Accepted:
+            logging.info("Registration dialog accepted")
+
+    def change_password(self):
+        username = self.username_input.text()
+        logging.debug(f"Opening Change Password dialog with Username: {username}")
+
+        dialog = ChangePasswordDialog(username, self)
+        if dialog.exec_() == QDialog.Accepted:
+            logging.info("Change Password dialog accepted")
+
+    def show_table_view(self):
+        dialog = TableView()
+        dialog.show()
+        dialog.exec_()
+
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+
+    # Apply stylesheet
+    app.setStyleSheet(stylesheet)
+    ex = UserView()
+    ex.show()
+    sys.exit(app.exec_())
