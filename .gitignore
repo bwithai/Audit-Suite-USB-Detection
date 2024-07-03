@@ -1,0 +1,11 @@
+.venv
+.idea
+__pycache__/
+*/__pycache__
+database.sqlite
+test.py
+try.py
+dist
+build
+usb_detection.spec
+database
